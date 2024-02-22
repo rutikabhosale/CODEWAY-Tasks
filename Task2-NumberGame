@@ -1,0 +1,68 @@
+import java.util.Random;
+import java.util.Scanner;
+class Game{
+	public int number;
+	public int inputnumber;
+	public int noOfGusses=0;
+	public static final int max_attempts=5;
+	
+	public int getNoOfGusses() {
+		return noOfGusses;
+	}
+
+
+	public void setNoOfGusses(int noOfGusses) {
+		this.noOfGusses = noOfGusses;
+	}
+
+
+	Game(){
+		Random ran=new Random();
+		this.number=ran.nextInt(100);
+	}
+	
+	void takeUserInput() {
+		System.out.println("Guess The Number:");
+		Scanner s=new Scanner(System.in);
+		inputnumber=s.nextInt();
+	}
+	boolean isCorrectNumber() {
+	    noOfGusses++;
+	    if (inputnumber == number) {
+	        System.out.printf("Yes, you guessed it right, it was %d\nYou guessed it in %d attempts\n", number, noOfGusses);
+	        return true;
+	    } else if (inputnumber < number) {
+	        System.out.println("Too Low ");
+	    } else if (inputnumber > number) {
+	        System.out.println("Too High");
+	    }
+	    
+	    if(noOfGusses >=max_attempts) {
+	    	System.out.println("Sorry you have reach the maximum number of attempts.The correct number was :"+number);
+	    	return true;
+	    }
+	    return false;
+	}
+
+	
+}
+public class NumberGame {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		do {
+			playGame();
+			System.out.println("Do You Want Play Again?(yes/no):");
+		}while(sc.next().equalsIgnoreCase("yes"));
+		System.out.println("Thanks For Playing....");
+	}
+		private static void playGame() {
+		Game g=new Game();
+		boolean b=false;
+		while(!b) {
+			g.takeUserInput();
+			b=g.isCorrectNumber();
+		}
+		}
+}
+
