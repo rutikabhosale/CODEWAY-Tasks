@@ -1,0 +1,59 @@
+import java.util.Scanner;
+public class StudentGradeCalculator {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+
+		String choice;
+		do {
+		System.out.println("Enter name of the student:");
+		String name=sc.next();
+		System.out.println("Enter Roll No:");
+		int rollNo=sc.nextInt();
+		System.out.println("Enter Number of Subject:");
+		int n=sc.nextInt();
+		
+		int marks=0;
+		int totalmarks=0;
+		for(int i=0;i<n;i++) {
+			System.out.println("Enter Subject\t"+ (i+1) +"marks (Out of 100):");
+		    marks=sc.nextInt();
+		
+		    if(marks>100) {
+		    	System.out.println("Error: Marks cannot be more than 100. Please enter valid marks.");
+		    	i--;
+		    	continue;
+		    }
+		    totalmarks=marks+totalmarks;
+		}
+		System.out.println("Sum Of all the marks:"+totalmarks);
+
+		int AvgPercentage=totalmarks/n;
+		
+		System.out.println("Average Percentage :"+AvgPercentage);
+		
+		char grade;
+		if(AvgPercentage >=90) {
+			grade='A';
+		}else if(AvgPercentage >=80) {
+			grade='B';
+		}else if(AvgPercentage >=70) {
+			grade='C';
+		}else if(AvgPercentage >=60) {
+			grade='D';
+		}else {
+			grade='F';
+		}
+		
+		System.out.println("===============Display Result====================");
+		System.out.println("Name Of Student:"+name);
+		System.out.println("Roll Number:"+rollNo);
+		System.out.println("Number Of Subject:"+n);
+		System.out.println("Total Marks:"+totalmarks);
+		System.out.println("Average Percentage:"+AvgPercentage);
+		System.out.println("Grade :"+grade);
+		
+		System.out.println("Do you want to continue,Pleae enter y/n");
+	    choice=sc.next();
+	}while(choice.equals("y") || choice.equals("Y"));
+	}
+}
